@@ -9,24 +9,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.foundation.clickable // Adicionado para clique
-import kotlinx.coroutines.launch
+import androidx.compose.foundation.clickable
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 
 class ParametrosActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,32 +42,37 @@ class ParametrosActivity : ComponentActivity() {
 fun ScaffoldParametros() {
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-    val context = LocalContext.current // Obtém o contexto atual
+    val context = LocalContext.current
 
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
                 Text(
-                    modifier = Modifier.padding(top = 8.dp).clickable {
-                        // Navega para a MainActivity
-                        val intent = Intent(context, MainActivity::class.java)
-                        context.startActivity(intent)
-                    },
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .clickable {
+                            // MainActivity
+                            val intent = Intent(context, MainActivity::class.java)
+                            context.startActivity(intent)
+                        },
                     text = "Monitoramento",
                     style = MaterialTheme.typography.bodyLarge
                 )
+
                 Text(
                     text = "Parâmetros",
                     style = MaterialTheme.typography.bodyLarge
                 )
+
                 Text(
-                    modifier = Modifier.padding(top = 8.dp).clickable {
-                        // Navega para a ParametrosActivity
-                        val intent = Intent(context, EstatisticasActivity::class.java)
-                        context.startActivity(intent)
-                    },
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .clickable {
+                            // MainActivity
+                            val intent = Intent(context, EstatisticasActivity::class.java)
+                            context.startActivity(intent)
+                        },
                     text = "Estatísticas",
                     style = MaterialTheme.typography.bodyLarge
                 )
@@ -81,11 +83,14 @@ fun ScaffoldParametros() {
             topBar = {
                 TopAppBar(
                     colors = topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
+                        containerColor = Color(0xFF0B737E),
+                        titleContentColor = Color(0xFFFFFFFF),
                     ),
                     title = {
-                        Text("Parâmetros")
+                        Text(
+                            text = "Parâmetros",
+                            fontWeight = FontWeight.Bold
+                        )
                     }
                 )
             }
