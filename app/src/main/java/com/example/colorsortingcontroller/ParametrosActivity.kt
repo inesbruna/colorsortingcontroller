@@ -21,7 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.clickable
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
@@ -47,7 +50,10 @@ fun ScaffoldParametros() {
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+            Column(modifier = Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                Card(modifier = Modifier, shape = RectangleShape, colors = CardDefaults.cardColors(
+                    containerColor = Color.LightGray
+                )) {
                 Text(
                     modifier = Modifier
                         .padding(top = 8.dp)
@@ -58,24 +64,30 @@ fun ScaffoldParametros() {
                         },
                     text = "Monitoramento",
                     style = MaterialTheme.typography.bodyLarge
-                )
-
-                Text(
-                    text = "Parâmetros",
-                    style = MaterialTheme.typography.bodyLarge
-                )
-
-                Text(
-                    modifier = Modifier
-                        .padding(top = 8.dp)
-                        .clickable {
-                            // MainActivity
-                            val intent = Intent(context, EstatisticasActivity::class.java)
-                            context.startActivity(intent)
-                        },
-                    text = "Estatísticas",
-                    style = MaterialTheme.typography.bodyLarge
-                )
+                )}
+                Card(modifier = Modifier, shape = RectangleShape, colors = CardDefaults.cardColors(
+                    containerColor = Color.LightGray
+                )) {
+                    Text(
+                        text = "Parâmetros",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
+                Card(modifier = Modifier, shape = RectangleShape, colors = CardDefaults.cardColors(
+                    containerColor = Color.LightGray
+                )) {
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 8.dp)
+                            .clickable {
+                                // MainActivity
+                                val intent = Intent(context, EstatisticasActivity::class.java)
+                                context.startActivity(intent)
+                            },
+                        text = "Estatísticas",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
             }
         }
     ) {

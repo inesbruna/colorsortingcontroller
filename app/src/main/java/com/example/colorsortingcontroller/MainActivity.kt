@@ -22,7 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.clickable
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 
 class MainActivity : ComponentActivity() {
@@ -47,20 +50,34 @@ fun ScaffoldMonitoramento() {
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-                Text(
-                    text = "Monitoramento",
-                    style = MaterialTheme.typography.bodyLarge
-                )
-                Text(
-                    modifier = Modifier.padding(top = 8.dp).clickable {
-                        // Navega para a ParametrosActivity
-                        val intent = Intent(context, ParametrosActivity::class.java)
-                        context.startActivity(intent)
-                    },
-                    text = "Parâmetros",
-                    style = MaterialTheme.typography.bodyLarge
-                )
+            Column(modifier = Modifier.fillMaxSize().padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                Card(modifier = Modifier, shape = RectangleShape, colors = CardDefaults.cardColors(
+                    containerColor = Color.LightGray
+                )) {
+                    Text(
+                        text = "Monitoramento",
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                Card(modifier = Modifier, shape = RectangleShape,  colors = CardDefaults.cardColors(
+                    containerColor = Color.LightGray
+                )) {
+                    Text(
+                        modifier = Modifier.padding(top = 8.dp).clickable {
+                            // Navega para a ParametrosActivity
+                            val intent = Intent(context, ParametrosActivity::class.java)
+                            context.startActivity(intent)
+                        },
+                        text = "Parâmetros",
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                Card(modifier = Modifier, shape = RectangleShape, colors = CardDefaults.cardColors(
+                        containerColor = Color.LightGray
+                    )) {
                 Text(
                     modifier = Modifier.padding(top = 8.dp).clickable {
                         // Navega para a EstatisticasActivity
@@ -68,9 +85,11 @@ fun ScaffoldMonitoramento() {
                         context.startActivity(intent)
                     },
                     text = "Estatísticas",
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold
                 )
             }
+                }
         },
     ) {
         Scaffold(
